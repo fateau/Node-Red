@@ -1,0 +1,113 @@
+[
+    {
+        "id": "e529eefc.c6299",
+        "type": "tab",
+        "label": "Flow 2"
+    },
+    {
+        "id": "62807d2f.89afa4",
+        "type": "function",
+        "z": "e529eefc.c6299",
+        "name": "Payload",
+        "func": "msg.headers={\n    deviceKey:\"aEt17PHFXNbXAtsR\"\n    };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 469,
+        "y": 190,
+        "wires": [
+            [
+                "72ef71fa.31143",
+                "b0dd719d.de7cd"
+            ]
+        ]
+    },
+    {
+        "id": "72ef71fa.31143",
+        "type": "http request",
+        "z": "e529eefc.c6299",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D0XKGXpv/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 650,
+        "y": 120,
+        "wires": [
+            [
+                "b798b6a6.e98618",
+                "ac0f0810.751de8"
+            ]
+        ]
+    },
+    {
+        "id": "b798b6a6.e98618",
+        "type": "http response",
+        "z": "e529eefc.c6299",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "b0dd719d.de7cd",
+        "type": "http request",
+        "z": "e529eefc.c6299",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D0XKGXpv/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "c1ee5263.ade94",
+                "ac0f0810.751de8"
+            ]
+        ]
+    },
+    {
+        "id": "c1ee5263.ade94",
+        "type": "http response",
+        "z": "e529eefc.c6299",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ac0f0810.751de8",
+        "type": "debug",
+        "z": "e529eefc.c6299",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 990,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d77aac7c.d216b",
+        "type": "inject",
+        "z": "e529eefc.c6299",
+        "name": "DHT",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "x": 248.88888888888886,
+        "y": 191.11111111111111,
+        "wires": [
+            [
+                "62807d2f.89afa4"
+            ]
+        ]
+    }
+]
